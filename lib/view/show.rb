@@ -30,4 +30,22 @@ class Show
 
   end
 
+  def results(player_1, player_2)
+    puts ""
+    puts "Un point sur le score :"
+    puts "•——————————————————————————————•"
+    print "|"
+    print "• #{player_1.name} •".center(15)
+    print "|"
+    print "• #{player_1.score} •".center(15)
+    print "|"
+    puts "•——————————————————————————————•"
+    print "|"
+    print "• #{player_2.name} •".center(15)
+    print "|"
+    print "• #{player_2.score} •".center(15)
+    print "|"
+    puts "•——————————————————————————————•"
+  end
+
 end
