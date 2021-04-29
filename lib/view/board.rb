@@ -27,7 +27,11 @@ class Board
     @show_instance = Show.new(@board_case_name_array)
     @num_round = 0
     @@all_board << self
-    
+
+  end
+
+  def board_to_show
+    @show_instance.live_board
   end
 
 end
