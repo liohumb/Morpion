@@ -6,7 +6,11 @@
 
 ## À toi de jouer
 
-Lance `ruby app.rb` dans ton terminal  
+Pour lancer le jeu   
+
+`bundle install`  
+
+`ruby app.rb`   
 
 Amuse toi bien !  
 
