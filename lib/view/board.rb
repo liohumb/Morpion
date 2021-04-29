@@ -47,4 +47,18 @@ class Board
     @show_instance.results(player_1, player_2)
   end
 
+  def board_who_wins(num_round, player_1, player_2)
+
+    @show_instance.live_board
+
+    if num_round%2==0
+      player_2.score =+ 1
+      puts "#{player_2.name} gagne cette manche".green
+    else
+      player_1.score += 1
+      puts "#{player_1.name} gagne cette manche".green
+    end
+
+  end
+
 end
