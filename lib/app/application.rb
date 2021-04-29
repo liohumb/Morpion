@@ -1,88 +1,99 @@
 require 'bundler'
 Bundler.require
-$:.unshift File.expand_path('./../lib' __FILE__)
+
+$:.unshift File.expand_path('./../lib', __FILE__)
+
 require 'app/player'
-require 'view/board'
+require 'views/board'
 require 'app/game'
-require 'view/boardcase'
+require 'views/boardcase'
 
 class Application
 
   attr_accessor :player_1, :player_2, :next_party
 
-  def initialize
-    new_players
-    @next_party = "y"
-  end
+	def initialize
+		new_players
+		@next_party ="y"
+	end
 
-  def perform
+	def perform
 
     while @next_party == "y"
-      Game.new(@player_1, @player_2).perform
-      puts "On continue ? y/n".yellow
-      print " •  "
-      @next_party = gets.chomp
-      while @next_party!= "y" && @next_party!= "n"
-        puts "Hm.. Je n'ai pas compris ?!?! On continue ? y/n".red
-        print " •  "
+			Game.new(@player_1,@player_2).perform
+        puts ""
+			  puts "On rejoue ?  y / n ".center(50)
+        puts ""
+        print "•    › ".green
         @next_party = gets.chomp
+
+    while @next_party!= "y" && @next_party!= "n"
+				puts "Oups.. Est ce que tu veux rejouer ?".center(50)
+        puts "Appuie sur 'y' pour oui ou sur 'n' pour non".center(50)
+	      print "•    › ".green
+				@next_party = gets.chomp
       end
+
     end
 
-    puts "Merci ! J'espère que ça t'a plu ??"
+    puts ""
+    puts "Merci ! A bientôt :)".green.center(50)
+    puts ""
 
   end
 
-  def new_players
+	def new_players
 
     system("clear")
+
     welcome
-    puts "Pour commencer, entre ton nom :"
-    print " •  "
+      puts ""
+      puts "Quel est ton nom?".center(50)
+      puts ""
+      print "•    › ".green
+      player1 = gets.chomp
 
-    player_1 = gets.chomp
+    while player1==""
+			puts "Il me faut un nom, réessaye :".red.center(50)
+      puts ""
+			print "•    › ".green
+			player1 = gets.chomp
+		end
 
-    while player_1 == ""
-      puts "Sois pas timide ! Dis moi ton petit nom :"
-      print " •  "
-      player_1 = gets.chomp
+    @player_1 = Player.new(player1, "X")
+
+    system ("clear")
+
+    puts "Bonjour #{@player_1.name.upcase.blue}, tu vas jouer avec les 'X'".center(50)
+    puts ""
+    puts "Quel est le nom de ton adversaire ?".center(50)
+    puts ""
+    print "•    › ".green
+    player2 = gets.chomp
+
+    while player2==""
+    puts "Il me faut un nom, réessaye :".red.center(50)
+    puts ""
+    print "•    › ".green
+    player2 = gets.chomp
+
     end
 
-    @player_1 = Player.new(player_1, "X")
+		@player_2 = Player.new(player2, "O")
 
-    system("clear")
-
-    puts "OK #{@player_1.name}, tu joues avec les 'X'"
-    puts "Ensuite, entre le nom du deuxième joueur :"
-    print " •  "
-
-    player_2 = gets.chomp
-
-    while player_2 == ""
-      puts "Sois pas timide ! Dis moi son petit nom :"
-      print " •  "
-      player_2 = gets.chomp
-    end
-
-    @player_2 = Player.new(player_2, "O")
-
-    system("clear")
-
-    puts "OK #{@player_2.name}, tu joues avec les '0'"
-    print "OK ? Appuie ENTRER quand tu es prêt(e)"
-    gets
-
-    system("clear")
+    system( "clear")
 
   end
 
-  def welcome
-    puts "• ———————————————————————————————————————————————————————————— •"
-    puts "• |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| •"
-    puts "• ||||||||||||||||||||||LE JEU DU MORPION||||||||||||||||||||| •"
-    puts "• ||||||||||||||||||||||    BIENVENUE    ||||||||||||||||||||| •"
-    puts "• |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| •"
-    puts "• ———————————————————————————————————————————————————————————— •"
+	def welcome
+		puts ""
+    puts "—————————————————————————————————————————————————".green
+    puts "|||||||||||||||||||||||||||||||||||||||||||||||||".green
+    puts "|||||||||||||||||||  LE  JEU  |||||||||||||||||||".green
+    puts "|||||||||||||||||||    DU     |||||||||||||||||||".green
+    puts "|||||||||||||||||||  MORPION  |||||||||||||||||||".green
+    puts "|||||||||||||||||||||||||||||||||||||||||||||||||".green
+    puts "—————————————————————————————————————————————————".green
   end
 
 end
