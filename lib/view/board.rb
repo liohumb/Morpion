@@ -83,6 +83,45 @@ class Board
 
   end
 
-  
+  def game_move(player_sign, choosen_box)
+
+    key_index = 1
+
+    @board_case_name_array.each do |box|
+      if key_index == choosen_box
+        box.box_value = player_sign
+      end
+      key_index += 1
+    end
+
+  end
+
+  def game_finished?
+    boardcase_hash = Hash.new
+    @board_case_name_array.each do |box|
+      boardcase_hash[box.box_name] = box.box_value
+    end
+    if (boardcase_hash["A1"]=="" || boardcase_hash["B1"]=="" || boardcase_hash["C1"]=="" ||
+      boardcase_hash["A2"]=="" || boardcase_hash["B2"]=="" || boardcase_hash["C2"]=="" ||
+      boardcase_hash["A3"]=="" || boardcase_hash["B3"]=="" || boardcase_hash["C3"]=="") then false else true end
+  end
+
+  def there_is_a_winner
+    boardcase_hash = Hash.new
+    @board_case_name_array.each do |box|
+      boardcase_hash[box.box_name] = box.box_value
+    end
+    if (boardcase_hash["A1"]==boardcase_hash["A2"] && boardcase_hash["A2"]==boardcase_hash["A3"] && boardcase_hash["A1"]!="") ||
+      (boardcase_hash["B1"]==boardcase_hash["B2"] && boardcase_hash["B2"]==boardcase_hash["C3"] && boardcase_hash["B1"]!="") ||
+      (boardcase_hash["C1"]==boardcase_hash["C2"] && boardcase_hash["C2"]==boardcase_hash["C3"] && boardcase_hash["C1"]!="") ||
+      (boardcase_hash["A1"]==boardcase_hash["B1"] && boardcase_hash["B1"]==boardcase_hash["C1"] && boardcase_hash["A1"]!="") ||
+      (boardcase_hash["B1"]==boardcase_hash["B2"] && boardcase_hash["B2"]==boardcase_hash["B3"] && boardcase_hash["B1"]!="") ||
+      (boardcase_hash["C1"]==boardcase_hash["C2"] && boardcase_hash["C2"]==boardcase_hash["C3"] && boardcase_hash["C1"]!="") ||
+      (boardcase_hash["A1"]==boardcase_hash["B2"] && boardcase_hash["B2"]==boardcase_hash["C3"] && boardcase_hash["A1"]!="") ||
+      (boardcase_hash["A3"]==boardcase_hash["B2"] && boardcase_hash["B2"]==boardcase_hash["C1"] && boardcase_hash["A3"]!="") ||
+      (boardcase_hash["A1"]==boardcase_hash["B1"] && boardcase_hash["B1"]==boardcase_hash["C1"] && boardcase_hash["A1"]!="") ||
+      (boardcase_hash["A2"]==boardcase_hash["B2"] && boardcase_hash["B2"]==boardcase_hash["C2"] && boardcase_hash["A2"]!="") ||
+      (boardcase_hash["A3"]==boardcase_hash["B3"] && boardcase_hash["B3"]==boardcase_hash["C3"] && boardcase_hash["A3"]!="") then true else false end
+  end
 
 end
