@@ -61,4 +61,28 @@ class Board
 
   end
 
+  def check_player_move(choosen_box)
+
+    result = ""
+
+    if choosen_box == 0 || choosen_box.between?(1,9) == false
+      result = false
+    else
+      key_index = 1
+      @board_case_name_array.each do |box|
+        if key_index == choosen_box
+          box.box_value == ""? result = true : result = false
+        end
+
+        key_index += 1
+
+      end
+    end
+
+    return result
+
+  end
+
+  
+
 end
