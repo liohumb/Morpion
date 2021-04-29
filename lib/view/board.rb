@@ -34,4 +34,8 @@ class Board
     @show_instance.live_board
   end
 
+  def board_menu
+    @show_instance.live_board
+  end
+
 end
