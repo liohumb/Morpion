@@ -9,4 +9,8 @@ class Show
 
   attr_accessor :board_case_array
 
+  def initialize(board_game_instance)
+    @board_case_array = board_game_instance
+  end
+
 end
