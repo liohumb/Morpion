@@ -15,4 +15,22 @@ class Application
     @next_party = "y"
   end
 
+  def perform
+
+    while @next_party == "y"
+      Game.new(@player_1, @player_2).perform
+      puts "On continue ? y/n".yellow
+      print " •  "
+      @next_party = gets.chomp
+      while @next_party!= "y" && @next_party!= "n"
+        puts "Hm.. Je n'ai pas compris ?!?! On continue ? y/n".red
+        print " •  "
+        @next_party = gets.chomp
+      end
+    end
+
+    puts "Merci ! J'espère que ça t'a plu ??"
+
+  end
+
 end
