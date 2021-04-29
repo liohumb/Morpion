@@ -10,4 +10,9 @@ class Application
 
   attr_accessor :player_1, :player_2, :next_party
 
+  def initialize
+    new_players
+    @next_party = "y"
+  end
+
 end
