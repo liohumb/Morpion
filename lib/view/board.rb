@@ -43,4 +43,8 @@ class Board
     puts "• Oupss.. Aucun de vous n'a gagné :) •"
   end
 
+  def show_result(player_1, player_2)
+    @show_instance.results(player_1, player_2)
+  end
+
 end
