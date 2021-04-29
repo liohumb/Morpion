@@ -38,4 +38,9 @@ class Board
     @show_instance.live_board
   end
 
+  def board_show_draw
+    @show_instance.live_board
+    puts "• Oupss.. Aucun de vous n'a gagné :) •"
+  end
+
 end
